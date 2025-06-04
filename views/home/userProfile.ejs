@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title><%= user.name %> - Perfil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/userProfile.css" />
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Network Social</div>
+    <nav class="nav">
+      <a href="/home">Início</a>
+      <a href="/home/search">Procurar usuarios</a>
+      <a href="/home/messages">Mensagens</a>
+      <a href="/home/profile">Perfil</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <aside class="sidebar">
+      <div class="profile">
+        <div class="profile-image-wrapper">
+          <img id="profileImage" src="<%= profile?.img || 'https://via.placeholder.com/120' %>" alt="Foto de perfil">
+        </div>
+        <% if (sessionUser && sessionUser._id !== user._id.toString()) { %>
+          <% if (!isFollowing) { %>
+            <form method="POST" action="/home/follow/<%= user._id %>" style="display:inline">
+              <button type="submit" class="btn btn-follow">Seguir</button>
+            </form>
+          <% } else { %>
+            <span>✔️ Seguindo</span>
+            <form method="POST" action="/home/unfollow/<%= user._id %>" style="display:inline">
+              <button type="submit" class="btn btn-unfollow">Deixar de seguir</button>
+            </form>
+          <% } %>
+        <% } %>
+        <h2><%= user.name %></h2>
+        <% if (profile?.bio) { %>
+          <p><%= profile.bio %></p>
+        <% } %>
+      </div>
+    </aside>
+
+    <section class="feed">
+      <h2>Posts recentes</h2>
+      <ul class="posts">
+        <% posts.forEach(post => { %>
+          <li class="post">
+            <div class="post-header">
+              <img src="<%= profile?.img || 'https://via.placeholder.com/55' %>" alt="Autor">
+              <div>
+                <h4><%= user.name %></h4>
+                <p><%= new Date(post.createdAt).toLocaleString('pt-BR') %></p>
+              </div>
+            </div>
+            <p><%= post.content %></p>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

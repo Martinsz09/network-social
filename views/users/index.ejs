@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Network Social</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Network Social</h1>
+    <form method="POST" action="/">
+      <input type="text" name="name" placeholder="Seu nome completo" required />
+      <input type="email" name="email" placeholder="Seu email" required />
+
+      <div class="password-wrapper">
+        <input type="password" id="password" name="password" placeholder="Crie uma senha" required />
+        <button type="button" id="togglePassword" aria-label="Mostrar ou ocultar senha">👁️</button>
+      </div>
+
+      <button type="submit">Criar conta</button>
+      <p class="login-link">
+        Já tem uma conta?
+        <a href="/login">Entrar</a>
+      </p>
+    </form>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>

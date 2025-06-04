@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Network Social - Profile</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Network Social</div>
+    <nav class="nav">
+      <a href="/home">Início</a>
+      <a href="/home/search">Procurar usuarios</a>
+      <a href="/home/messages">Mensagens</a>
+      <a href="/home/profile">Perfil</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <aside class="sidebar">
+      <div class="profile">
+        <h2><%= user.name %></h2>
+      </div>
+      <div class="suggestions">
+        <h3>Seguindo</h3>
+<ul class="post">
+  <% friends.forEach(friend => { %>
+    <li>
+      <a href="/home/user/<%= friend._id %>" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+        <img src="<%= friendProfileMap[friend._id] || 'https://via.placeholder.com/30' %>" width="30" height="30" style="border-radius: 50%; margin-right: 8px;" />
+        <%= friend.name %>
+      </a>
+    </li>
+  <% }) %>
+</ul>
+
+
+      </div>
+    </aside>
+
+    <section class="feed">
+      <form action="/home/profile" method="POST" class="bio-form" enctype="multipart/form-data">
+        <div class="profile-image-wrapper" tabindex="0">
+          <img id="profileImage" src="<%= profile && profile.img ? profile.img : 'https://via.placeholder.com/120' %>" alt="Foto de perfil">
+          <button type="button" class="upload-btn">
+            <span class="material-icons upload-icon">edit</span>
+          </button>
+          <input type="file" id="profileImageInput" name="img" accept="image/*" style="display:none">
+        </div>
+
+        <label for="bio" class="bio-label">Biografia</label>
+        <textarea id="bio" name="bio" rows="6" maxlength="500"><%= profile ? profile.bio : '' %></textarea>
+
+        <button type="submit" class="save-btn">Salvar</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const uploadBtn = document.querySelector('.upload-btn');
+    const fileInput = document.getElementById('profileImageInput');
+    const profileImage = document.getElementById('profileImage');
+
+    uploadBtn.addEventListener('click', () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+          profileImage.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>

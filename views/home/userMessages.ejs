@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chat com <%= friend.name %></title>
+  <link rel="stylesheet" href="/css/messages.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Network Social</div>
+    <nav class="nav">
+      <a href="/home">Início</a>
+      <a href="/home/search">Procurar usuários</a>
+      <a href="/home/messages">Mensagens</a>
+      <a href="/home/profile">Perfil</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="chat-section">
+      <div class="chat-header">Conversa com <strong><%= friend.name %></strong></div>
+      <div class="chat-messages">
+        <% messages.forEach(msg => { %>
+          <div class="message <%= msg.from.toString() === user._id.toString() ? 'sent' : 'received' %>">
+            <p><%= msg.content %></p>
+            <span class="time"><%= new Date(msg.createdAt).toLocaleTimeString() %></span>
+          </div>
+        <% }) %>
+      </div>
+      <form class="chat-form" method="POST" action="/home/messages/<%= friend._id %>">
+        <input
+          type="text"
+          name="message"
+          placeholder="Digite sua mensagem..."
+          required
+        />
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

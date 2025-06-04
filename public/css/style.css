@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #262626;
+}
+
+.container {
+  background: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 35px;
+  border: 1px solid #dbdbdb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 32px;
+  color: #262626;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  border: 1px solid #dbdbdb;
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 15px;
+  background: #fafafa;
+  color: #262626;
+  transition: border-color 0.2s ease;
+  outline-offset: 2px;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:focus {
+  border-color: #3897f0;
+  background: #fff;
+  outline: none;
+}
+
+button[type="submit"] {
+  background-color: #3897f0;
+  color: #fff;
+  border: none;
+  padding: 14px 0;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+button[type="submit"]:hover {
+  background-color: #2a76d2;
+}
+
+.login-link {
+  text-align: center;
+  font-size: 14px;
+  color: #3897f0;
+  font-weight: 500;
+}
+
+.login-link a {
+  color: #3897f0;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.password-wrapper button {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: #999;
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.password-wrapper button:hover {
+  color: #3897f0;
+}

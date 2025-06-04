@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Network Social - Página Inicial</title>
+  <link rel="stylesheet" href="/css/home.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="logo">Network Social</div>
+    <nav class="nav">
+      <a href="/home">Início</a>
+      <a href="/home/search">Procurar usuarios</a>
+      <a href="/home/messages">Mensagens</a>
+      <a href="/home/profile">Perfil</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <aside class="sidebar">
+      <div class="profile">
+        <img id="profileImage" src="<%= profile && profile.img ? profile.img : 'https://via.placeholder.com/120' %>" alt="Foto de perfil">
+        <h2><%= user.name %></h2>
+      </div>
+
+      <div class="suggestions">
+ <h3>Seguindo</h3>
+<ul class="post">
+  <% friends.forEach(friend => { %>
+    <li>
+      <a href="/home/user/<%= friend._id %>" style="display: flex; align-items: center; text-decoration: none; color: inherit;">
+        <img src="<%= friendProfileMap[friend._id] || 'https://via.placeholder.com/30' %>" width="30" height="30" style="border-radius: 50%; margin-right: 8px;" />
+        <%= friend.name %>
+      </a>
+    </li>
+  <% }) %>
+</ul>
+
+</div>
+    </aside>
+
+    <section class="feed">
+      <div class="create-post">
+        <form action="/home" method="POST">
+          <textarea name="content" placeholder="O que você está pensando?" rows="3"></textarea>
+          <button>Postar</button>
+        </form>
+      </div>
+
+      <ul class="posts">
+        <% posts.forEach((post) => { %>
+          <li class="post">
+            <div class="post-header">
+              <img src="<%= profileMap[post.user._id] || 'https://via.placeholder.com/50' %>" alt="Foto de perfil" />
+              <div>
+                <a href="/home/user/<%= post.user._id %>"><%= post.user.name %></a>
+                <p>
+                  <%= new Date(post.createdAt).toLocaleDateString('pt-BR') %> às
+                  <%= new Date(post.createdAt).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) %>
+                </p>
+              </div>
+            </div>
+            <p><%= post.content %></p>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

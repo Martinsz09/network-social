@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Network Social - Chat estilo WhatsApp</title>
+    <link rel="stylesheet" href="/css/messages.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">Network Social</div>
+      <nav class="nav">
+        <a href="/home">Início</a>
+        <a href="/home/search">Procurar usuários</a>
+        <a href="/home/messages">Mensagens</a>
+        <a href="/home/profile">Perfil</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <aside class="sidebar">
+        <div class="users">
+          <ul class="list-users">
+            <li class="user active">
+
+            </li>
+
+            <
+            <% friends.forEach(function(friend) { %>
+            <li class="user">
+              <a
+                href="/home/messages/<%= friend._id %>"
+                style="display: flex; align-items: center; text-decoration: none; color: inherit;"
+              >
+                <img
+                  src="<%= friendProfileMap[friend._id] || 'https://via.placeholder.com/30' %>"
+                  width="30"
+                  height="30"
+                  style="border-radius: 50%; margin-right: 8px"
+                  alt="Avatar de <%= friend.name %>"
+                />
+                <div class="user-info">
+                  <strong><%= friend.name %></strong>
+                  <span>Mensagem recente...</span>
+                </div>
+                <div class="user-time">09:30</div>
+              </a>
+            </li>
+            <% }) %>
+
+            <li class="user">
+              
+             
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      
+    </main>
+  </body>
+</html>
